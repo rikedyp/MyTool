@@ -13,7 +13,7 @@ name: "Draft Release"
 on:
   push:
     branches:
-      - "master"
+      - "trunk"
   workflow_dispatch:   # allows triggering from GitHub interface
 
 jobs:
