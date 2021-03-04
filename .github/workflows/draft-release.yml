@@ -18,7 +18,7 @@ jobs:
       - name: Read major.minor
         id: majmin
         run: |
-          VER=$( cat MyTool.apln | grep "VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'" | cut -c 33- | sed "s/..$//" )
+          VER=$( cat MyTool.apln | grep "VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'" | cut -c 27- | sed "s/...$//" )
           echo ${VER}
           echo "::set-output name=version::${VER}"
 # Create or update Draft release
