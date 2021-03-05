@@ -140,7 +140,7 @@ From this point onwards Dyalog v18.0 is the actively developed version.
 1. Publish release
 
     First line of notes:  
-    `Works with Dyalog versions: 17.1, `
+    `Works with Dyalog versions: 17.0-`
 
 ## Period of special bug fixes
 A set of [post-release bug fixes](#post-release-bug-fixes), but for Dyalog versions v17.1 and v18.0.
