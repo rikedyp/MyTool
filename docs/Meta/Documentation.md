@@ -4,12 +4,19 @@ To create versioned documentation, use [Mike](https://squidfunk.github.io/mkdocs
 Documentation lives in the `docs/` folder in the root of the repository.
 
 ## Setting up MkDocs
-First, initialise the docs folder and configuration `mkdocs.yml` file.
-```bash
-mkdocs new .
-```
+1. First, initialise the docs folder and configuration `mkdocs.yml` file.
 
-Then, or alternatively skipping the previous step, copy the configuration file and styles from this repository (details of changes to come).
+        mkdocs new .
+
+1. Then, set the default docs to latest (enables redirect from root)
+
+        mike set-default --push latest
+
+1. Lastly, deploy the current docs to GitHub with the correct version and alias `latest`
+
+        mike deploy --push --update-alises 0.0 latest
+
+1. Optionally, copy the configuration file, styles and images from this repository (details of differences to come).
 
 ## Viewing rendered docs
 Hot reloading means that changes to markdown files are quickly rendered on a locally served web page.
