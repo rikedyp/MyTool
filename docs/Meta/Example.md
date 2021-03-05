@@ -100,7 +100,7 @@ Shortly after the release of Dyalog v17.0, bugs were found for which a fixed ver
 ## Add a feature (v0.1)
 Compatible with Dyalog v17.0 to latest. However, this new development will only be included with the Dyalog version currently in active development (v17.1).
 
-1. Create branch from the head named `170`
+1. Create branch from the head named `0.0.170`
 	1. Update `VERSION_STRING`
 
         In MyTool, `VERSION_STRING ← '0.0.170-0'`  
@@ -110,21 +110,20 @@ Compatible with Dyalog v17.0 to latest. However, this new development will only 
 
         In a real tool, this could be automated
 
-1. Create a draft release from branch `170`
+1. Create a draft release from branch `0.0.170`
 
     This draft release is now picked up by future builds of Dyalog v17.0
 
 1. Checkout the trunk
-1. Add feature `F1` to `MyTool.apln`
-1. Document `F1`
+1. Add feature `ListReleases` to `MyTool.apln`
+1. Document `ListReleases`
 1. Create "Old Versions" page in docs
-1. Stash "old versions page" change only
 1. Commit changes 4 and 5 to trunk
-1. Apply "old versions page" stash to trunk
 1. Commit "old versions page" change to trunk
-1. Check out commit with tag of previous minor release
-1. Apply "old versions page" stash
-1. Publish old docs version
+1. For each previous minor version (with docs for that particular version)
+	1. Check out commit with tag of previous minor release (corresponding to current docs for that version)
+	1. Cherry pick "old versions page" commit to previous release
+	1. Publish old docs version
 
         mike deploy --push 0.0
 

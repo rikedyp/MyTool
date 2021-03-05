@@ -3,8 +3,49 @@
     ∇ VERSION_STRING←Version;APL_VERSION_RANGE
     ⍝ Bug fix #1 (GH issue #3)
     ⍝ Bug fix #2 (GH issue #4)
-      APL_VERSION_RANGE ← '170-'
-      VERSION_STRING ← '0.0.0'
+      APL_VERSION_RANGE←'170-'
+      VERSION_STRING←'0.1.0'
+    ∇
+
+    ∇ releases←{credentials}ListReleases url;data;releases;protocol;_;owner;repo;cred;releasesurl;isdraft;releaseinfo;draftassets;publicassets;public;draft;GetDyalogVersions;publicDV;draftDV;draftinfo
+    ⍝ credentials: optional path to credentials file
+    ⍝              if included, draft releases may be listed
+    ⍝              username:token
+    ⍝              see https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
+    ⍝         url: repository url
+    ⍝    releases: nested matrix, each row is (tag_name compatible_dyalog_versions asset_url)
+      :If 0=⎕NC'HttpCommand'                                     ⍝ HttpCommand not found, import using SALT
+          ⎕SE.SALT.Load'HttpCommand'
+      :EndIf
+    ⍝ Get API URL from url
+      (protocol _ owner repo)←'/'(≠⊆⊢)url
+      releasesurl←protocol,'//api.github.com/repos/',owner,'/',repo,'/releases'
+    ⍝ Download releases data
+      :If 0=⎕NC'credentials'                                     ⍝ No credentials, list public releases only
+          data←(HttpCommand.Get releasesurl).Data
+      :Else
+          credentials←{⍵/⍨(∨\∧∘⌽∨\∘⌽)'"'≠⍵}credentials           ⍝ Remove double quotes " from path
+          cred←(⊃⎕NGET credentials)~⎕UCS 10 13 32                ⍝ Remove spaces and newlines from credentials
+          data←∊(⎕SH'curl -u ',cred,' ',releasesurl)
+      :EndIf
+    ⍝ Extract tag_name, compatible_dyalog_versions (DV), asset_url (assets)
+      releaseinfo←⎕JSON data
+      isdraft←(⊂⊂'true')∊⍨releaseinfo.draft
+      public←(releaseinfo/⍨~isdraft)
+      draft←isdraft/releaseinfo
+      GetDyalogVersions←(⎕UCS 10 13)∘{⊃⌽':'(≠⊆⊢)⍺(⊃(~∊⍨)⊆⊢)⍵}¨   ⍝ Get compatible Dyalog versions
+      publicDV←GetDyalogVersions public.body
+      :If 0<≢draft                                               ⍝ Get info for draft versions if available
+          draftDV←GetDyalogVersions draft.body
+          draftassets←{¯2↓url↓⍨≢⊃'\[.*\]\('⎕S'&'⊢url←2⊃⍵(≠⊆⊣)⎕UCS 10}¨draft.body
+          draftinfo←draft.tag_name,draftDV,⍪draftassets
+      :Else
+          draftinfo←0 3⍴⍬
+      :EndIf
+    ⍝ Get asset urls
+      publicassets←(⊃¨public.assets).browser_download_url
+    ⍝ Bring together releases information
+      releases←(draftinfo)⍪(public.tag_name,publicDV,⍪publicassets)
     ∇
 
 :EndNamespace
