@@ -4,7 +4,7 @@
     ⍝ Bug fix #1 (GH issue #3)
     ⍝ Bug fix #2 (GH issue #4)
       APL_VERSION_RANGE ← '170-'
-      VERSION_STRING ← '0.0.0'
+      VERSION_STRING ← '0.0.170-0'
     ∇
 
 :EndNamespace
