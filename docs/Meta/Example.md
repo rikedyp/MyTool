@@ -78,7 +78,7 @@ From this point onwards Dyalog v17.1 is the actively developed version.
 1. Publish release
 
     First line of notes:  
-    `Works with Dyalog versions: 17.0, `
+    `Works with Dyalog versions: 17.0- `
 
 ## Set up GitHub Pages
 On the GitHub website, go to the repository settings (e.g. `https://github.com/rikedyp/MyTool/settings`) and enable GitHub pages using the `gh-pages` branch.
