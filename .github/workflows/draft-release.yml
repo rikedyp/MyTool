@@ -18,7 +18,7 @@ jobs:
       - name: Read major.minor
         id: majmin
         run: |
-          VER=$( cat MyTool.apln | grep "VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'" | cut -c 27- | sed "s/...$//" )
+          VER=$( cat MyTool.apln | grep "VERSION_STRING←'[0-9]\+.[0-9]\+..*-\?0'" | cut -c 25- | sed "s/...$//" )
           echo ${VER}
           echo "::set-output name=version::${VER}"
 # Create or update Draft release
@@ -29,7 +29,7 @@ jobs:
       # Replaces e.g. VERSION_STRING ← 0.3.0       with   VERSION_STRING ← 0.3.[nruns]-[git-hash]
       #            or VERSION_STRING ← 0.3.dev-0   with   VERSION_STRING ← 0.3.dev-[nruns]-[git-hash]
         run: |
-          sed -i "/VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'/s/0'/${{ github.run_number }}-${{ github.sha }}'/" MyTool.apln 
+          sed -i "/VERSION_STRING←'[0-9]\+.[0-9]\+..*-\?0'/s/0'/${{ github.run_number }}-${{ github.sha }}'/" MyTool.apln 
       - name: Draft release
         uses: "marvinpinto/action-automatic-releases@latest"        
         with:
