@@ -226,6 +226,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -233,9 +248,9 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
       
-      <label class="md-nav__link" for="nav-3">
+      <label class="md-nav__link" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
         
           <a href="../" class="md-nav__link"
@@ -245,7 +260,7 @@
         </a>
       </label>
       <nav class="md-nav" aria-label="Meta" data-md-level="1">
-        <label class="md-nav__title" for="nav-3">
+        <label class="md-nav__title" for="nav-4">
           <span class="md-nav__icon md-icon"></span>
           
             <a href="../" class="md-nav__link"
@@ -461,10 +476,26 @@
 To create versioned documentation, use <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/">Mike</a>.<br />
 Documentation lives in the <code>docs/</code> folder in the root of the repository.</p>
 <h2 id="setting-up-mkdocs">Setting up MkDocs</h2>
+<ol>
+<li>
 <p>First, initialise the docs folder and configuration <code>mkdocs.yml</code> file.</p>
-<pre><code class="language-bash">mkdocs new .
+<pre><code>mkdocs new .
 </code></pre>
-<p>Then, or alternatively skipping the previous step, copy the configuration file and styles from this repository (details of changes to come).</p>
+</li>
+<li>
+<p>Then, set the default docs to latest (enables redirect from root)</p>
+<pre><code>mike set-default --push latest
+</code></pre>
+</li>
+<li>
+<p>Lastly, deploy the current docs to GitHub with the correct version and alias <code>latest</code></p>
+<pre><code>mike deploy --push --update-alises 0.0 latest
+</code></pre>
+</li>
+<li>
+<p>Optionally, copy the configuration file, styles and images from this repository (details of differences to come).</p>
+</li>
+</ol>
 <h2 id="viewing-rendered-docs">Viewing rendered docs</h2>
 <p>Hot reloading means that changes to markdown files are quickly rendered on a locally served web page.</p>
 <pre><code class="language-bash">mkdocs serve
