@@ -59,7 +59,7 @@ In this system, supported Dyalog versions are manually input in release notes up
 
 ## Initial commits (v0.0)
 Compatible with Dyalog v17.0 to latest  
-Dyalog v17.0 was released including this (patch) version of the tool.  
+Dyalog v17.0 is released including this (patch) version of the tool.  
 From this point onwards Dyalog v17.1 is the actively developed version.
 
 1. Create `README.md`
@@ -132,7 +132,7 @@ Compatible with Dyalog v17.0 to latest. However, this new development will only 
         mike deploy --push --update-aliases 0.1 latest
 
 ## Fix a bug
-Dyalog v17.1 was released including this (patch) version of the tool.  
+Dyalog v17.1 is released including this (patch) version of the tool.  
 From this point onwards Dyalog v18.0 is the actively developed version.
 
 1. Add comment ("bug fix") to `MyTool.apln`
@@ -162,7 +162,7 @@ Compatible with Dyalog v18.0 to latest
 
 ## Add a feature (v0.3)
 Compatible with Dyalog v18.0 to latest  
-Dyalog v18.0 was released with this (patch) version of the tool, including the new feature `F3`.  
+Dyalog v18.0 is released with this (patch) version of the tool, including the new feature `F3`.  
 From this point onwards Dyalog v18.1 is the actively developed version.
 
 1. Add `F3` to `MyTool.apln`

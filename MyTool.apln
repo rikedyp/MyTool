@@ -3,6 +3,7 @@
     ∇ VERSION_STRING←Version;APL_VERSION_RANGE
     ⍝ Bug fix #1 (GH issue #3)
     ⍝ Bug fix #2 (GH issue #4)
+    ⍝ Bug fix #3 (GH issue #10)
       APL_VERSION_RANGE←'170-'
       VERSION_STRING←'0.1.0'
     ∇
