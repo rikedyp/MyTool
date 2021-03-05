@@ -101,6 +101,15 @@ Shortly after the release of Dyalog v17.0, bugs were found for which a fixed ver
 Compatible with Dyalog v17.0 to latest. However, this new development will only be included with the Dyalog version currently in active development (v17.1).
 
 1. Create branch from the head named `170`
+	1. Update `VERSION_STRING`
+
+        In MyTool, `VERSION_STRING ← '0.0.170-0'`  
+        In a real tool, possibly `VERSION_STRING ← '0.0.0'` 
+
+	1. Tag commit `0.0.170-1-[git-hash]`
+
+        In a real tool, this could be automated
+
 1. Create a draft release from branch `170`
 
     This draft release is now picked up by future builds of Dyalog v17.0
