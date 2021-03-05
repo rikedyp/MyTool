@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A self-study introduction to Dyalog APL">
+        <meta name="description" content="An example GitHub repository">
       
       
       
@@ -628,9 +628,14 @@ git push
 </code></pre>
 </li>
 <li>
+<p>Set default docs to latest</p>
+<pre><code>mike set-default --push latest
+</code></pre>
+</li>
+<li>
 <p>Publish release</p>
 <p>First line of notes:<br />
-<code>Works with Dyalog versions: 17.0,</code></p>
+<code>Works with Dyalog versions: 17.0-</code></p>
 </li>
 </ol>
 <h2 id="set-up-github-pages">Set up GitHub Pages</h2>
@@ -815,7 +820,7 @@ From this point onwards Dyalog v18.1 is the actively developed version.</p>
       <script>
         app = initialize({
           base: "../..",
-          features: [],
+          features: ['navigation.instant'],
           search: Object.assign({
             worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
