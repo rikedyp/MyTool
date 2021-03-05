@@ -166,7 +166,7 @@ The fix will be backported to tools included in builds of v17.0, v17.1 and v18.0
 
 1. Fix bug in head
 1. Commit to main branch
-1. Determine commits corresponding to old releases of tool (using [the tools versions tool](Meta/ToolVersions.md), which follows the procedure outlined in [The Document]()) which need the patch applied and for each commit:
+1. Determine commits corresponding to old releases of tool (using [the tools versions tool](ToolVersions.md), which follows the procedure outlined in [The Document]()) which need the patch applied and for each commit:
 	1. Branch the commit, giving it the appropriate name
 	1. Cherry pick the fix
 	1. Push the new branch to GitHub

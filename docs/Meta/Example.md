@@ -71,6 +71,10 @@ From this point onwards Dyalog v17.1 is the actively developed version.
         git commit -m "Version function"  
         git push
 
+1. Set default docs to latest
+
+        mike set-default --push latest
+
 1. Publish latest docs  
 
         mike deploy --push --update-aliases 0.0 latest
@@ -176,7 +180,7 @@ The fix will be backported to MyTool versions included in builds of v17.0, v17.1
 
 1. Fix bug in the trunk
 1. Commit to trunk
-1. Determine commits corresponding to old releases of tool (using [the tools versions tool](Meta/ToolVersions.md), which need the patch applied and for each commit:
+1. Determine commits corresponding to old releases of tool (using [the tools versions tool](ToolVersions.md), which need the patch applied and for each commit:
 	1. Branch the commit, giving it the appropriate name
 	1. Cherry pick the fix
 	1. Push the new branch to GitHub
