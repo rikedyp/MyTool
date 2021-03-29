@@ -9,6 +9,8 @@ theme:
   logo: 'img/dyalog-white.svg'
   features:
     - navigation.instant
+markdown_extensions:
+  - admonition
 plugins:
   - search
   - awesome-pages
