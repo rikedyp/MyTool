@@ -1,0 +1,8 @@
+{
+  Settings: {
+      // maximum workspace
+      MAXWS: "100MB",
+      // Set the following to the location of Jarvis.dyalog on your local file system
+      JARVISDIR: "/g/Jarvis/Source/Jarvis.dyalog"
+  }
+}

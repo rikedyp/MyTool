@@ -5,8 +5,21 @@
     ⍝ Bug fix #2 (GH issue #4)
     ⍝ Bug fix #3 (GH issue #10)
     ⍝ Bug fix #4 (GH issue #11)
-      APL_VERSION_RANGE←'170-'
-      VERSION_STRING←'0.1.0'
+      APL_VERSION_RANGE←'180-'
+      VERSION_STRING←'0.2.0'
+    ∇
+
+    github←'https://github.com/rikedyp/'
+    dyalog_versions ← ↑(16 17 17.1 18 18.1 19)('160' '170' '171' '180' '181' '190')
+
+    ∇ Run args;jarvis_dir;s
+      :If 0=⎕NC'Jarvis'   ⍝ Load Jarvis
+          2 ⎕FIX'file://',jarvis_dir
+      :EndIf
+      s←#.Server←⎕NEW Jarvis
+      s.CodeLocation←'#.MyTool'
+      s.IncludeFns←'GetURL'
+      s.Start
     ∇
 
     ∇ releases←{credentials}ListReleases url;data;releases;protocol;_;owner;repo;cred;releasesurl;isdraft;releaseinfo;draftassets;publicassets;public;draft;GetDyalogVersions;publicDV;draftDV;draftinfo
@@ -49,5 +62,45 @@
     ⍝ Bring together releases information
       releases←(draftinfo)⍪(public.tag_name,publicDV,⍪publicassets)
     ∇
+
+    ∇ url←GetURL(toolname dversion);releases;cversions;support;tversions;split;comp_support
+   ⍝ Get url for release of TOOL to be included with build of DVERSION
+   ⍝                             or that was included with build of DVERSION on DATE
+      url←''
+     ⍝ ⎕←'credentials' ListReleases github,tool
+      releases←'credentials'ListReleases github,toolname
+      cversions←dversion IsCompatibileWith releases[;2]
+      :If ~∨/cversions
+          ⎕SIGNAL⊂('Message' 'No Compatible Tool Versions')('EN' 628)
+      :EndIf
+      tversions←1⌷⍤1⊢cversions⌿releases
+      split←'.-'∘((~∊⍨)⊆⊢)¨tversions
+      support←5=≢¨split
+      comp_support←dversion∘{⍺=(dyalog_versions,¯1)[1;dyalog_versions[2;]⍳3⌷⍵]}¨support/split
+      :If ∨/comp_support
+     ⍝ Latest release of compatible support branch
+          url←1 3⌷(⊂∘⍒⌷⊢)support⌿releases
+      :Else
+     ⍝ Latest compatible release
+          url←1 3⌷(⊂∘⍒⌷⊢)releases⌿⍨~support
+      :EndIf
+    ∇
+
+      IsCompatibileWith←{
+   ⍝ ⍺: Dyalog version to include tool
+   ⍝ ⍵: Release table from ListReleases
+   ⍝ ←: Boolean vector of compatible tool releases
+          tvers←' '∘(1↓,⊢⍤/⍨1(⊢∨⌽)0,≠)¨⍵
+          single←'^\d+\.\d+$'
+          min←'^\d+\.\d+-$'
+          range←'^\d+\.\d+-\d+\.\d+$'
+          multi←'^\d+\.\d+,[\d+\.\d+,?]+$'
+          InRange←{2=+⌿∨⌿⍤2⊢⍵(∘.≤,[0.5]∘.≥)⍺}
+          comp←⍺∘{6::0 ⋄ ⍺=⍎'-'~⍨⍵⌿⍨≢single ⎕S 1⊢⍵:1 ⋄ 0}¨tvers               ⍝ Equal to single compatible version
+          comp∨←⍺∘{6::0 ⋄ ⍺≥⍎'-'~⍨⍵⌿⍨≢min ⎕S 1⊢⍵:1 ⋄ 0}¨tvers                 ⍝ Greater than minimum compatible version
+          comp∨←⍺∘{6::0 ⋄ r←⍎¨'-'(≠⊆⊢)⍵⌿⍨≢range ⎕S 1⊢⍵ ⋄ ⍺ InRange r}¨tvers   ⍝ In range of compatible versions
+          comp∨←⍺∘{6::0 ⋄ ⍺∊⍎¨','(≠⊆⊢)⍵⌿⍨≢multi ⎕S 1⊢⍵}¨tvers                 ⍝ Equal to one of several compatible versions
+          comp
+      }
 
 :EndNamespace
