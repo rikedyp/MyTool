@@ -179,6 +179,9 @@ From this point onwards Dyalog v18.1 is the actively developed version.
 1. Checkout head
 1. Copy locally stored, modified old docs folder to `docs/0.1`
 1. Modify mkdocs.yml to exclude `docs/0.1`
+
+    https://pypi.org/project/mkdocs-exclude/
+
 1. Commit to trunk and push
 
 ## Backport a critical bug fix
