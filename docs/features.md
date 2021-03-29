@@ -46,3 +46,44 @@ This will enable listing of draft releases if the credentials match a GitHub use
 └──────────────────────────────────────────────────┴──────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 ```
+
+## Get tool release asset URL
+The `GetURL` function takes a 2-element list argument and returns a character vector of the URL of the first asset specified in the release chosen [according to the tool version selection procedure](../toolversions/#what-version-of-this-tool-is-included-with-this-build-of-dyalog).
+
+```APL
+      MyTool.GetURL'rikedyp/MyTool' 17
+https://github.com/rikedyp/MyTool/files/6090514/MyTool.zip
+```
+
+### JSON WebService API
+The tools version selection tool `MyTool/GetURL` can also be run as a web service.
+
+The API can be accessed using a `POST` request with a JSON payload. An example request is given below:
+```
+POST /GetURL HTTP/1.1         
+                              
+Host: localhost:8080          
+                              
+Content-Type: application/json
+                              
+User-Agent: Dyalog/Conga      
+                              
+Accept: */*                   
+                              
+Content-Length: 21            
+                              
+Accept-Encoding: gzip, deflate
+                              
+                              
+                              
+["rikedyp/MyTool",18]    
+```
+
+#### Serve on macOS and Linux
+```APL
+dyalog LOAD=MyTool.apln
+```
+
+#### Serve on Microsoft Windows
+**Right click** `MyTool.apln` → **Run**.
+
