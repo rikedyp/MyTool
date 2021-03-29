@@ -25,14 +25,14 @@ The first line begins with the text `Works with Dyalog versions: ` (the colon `:
 |Number format|Compatibility|Example|
 |---|---|---|
 |A single Dyalog version number | This tool version is compatible with that Dyalog version only | `Works with Dyalog versions: 17.0`
-|A single Dyalog version number followed by a comma | This tool version is compatible with that Dyalog version or higher | `Works with Dyalog versions: 17.1,`
+|A single Dyalog version number followed by a dash `⎕UCS 45` | This tool version is compatible with that Dyalog version or higher | `Works with Dyalog versions: 17.1-`
 |Two Dyalog version numbers separated by a dash `⎕UCS 45` | This tool version is compatible with all Dyalog versions from the lowest to the highest specified inclusive | `Works with Dyalog versions: 17.1-19.0`
-|Two or more Dyalog version numbers separated by commas `⎕UCS 44` | This tool version is compatible with the specified Dyalog versions only | `Works with Dyalog versions: 17.1-19.0`
+|Two or more Dyalog version numbers separated by commas `⎕UCS 44` | This tool version is compatible with the specified Dyalog versions only | `Works with Dyalog versions: 17.1,19.0`
 
 ### Examples:
 ```text
 Works with Dyalog versions: 17.0         ⍝ v17.0 only
-Works with Dyalog versions: 17.1,        ⍝ v17.1 or higher
+Works with Dyalog versions: 17.1-        ⍝ v17.1 or higher
 Works with Dyalog versions: 17.0-18.1    ⍝ v17.0,v17.1,v18.0,v18.1
 Works with Dyalog versions: 16.0,17.1    ⍝ v16.0 and v17.1 only
 ```
