@@ -444,18 +444,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../OldExample/" class="md-nav__link">
-        Old Example
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../ToolVersions/" class="md-nav__link">
         The Tool Versions Tool
       </a>
@@ -626,7 +614,7 @@ jobs:
       - name: Read major.minor
         id: majmin
         run: |
-          VER=$( cat MyTool.apln | grep &quot;VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'&quot; | cut -c 27- | sed &quot;s/...$//&quot; )
+          VER=$( cat MyTool.apln | grep &quot;VERSION_STRING←'[0-9]\+.[0-9]\+..*-\?0'&quot; | cut -c 25- | sed &quot;s/...$//&quot; )
           echo ${VER}
           echo &quot;::set-output name=version::${VER}&quot;
 # Create or update Draft release
@@ -637,7 +625,7 @@ jobs:
       # Replaces e.g. VERSION_STRING ← 0.3.0       with   VERSION_STRING ← 0.3.[nruns]-[git-hash]
       #            or VERSION_STRING ← 0.3.dev-0   with   VERSION_STRING ← 0.3.dev-[nruns]-[git-hash]
         run: |
-          sed -i &quot;/VERSION_STRING ← '[0-9]\+.[0-9]\+..*-\?0'/s/0'/${{ github.run_number }}-${{ github.sha }}'/&quot; MyTool.apln 
+          sed -i &quot;/VERSION_STRING←'[0-9]\+.[0-9]\+..*-\?0'/s/0'/${{ github.run_number }}-${{ github.sha }}'/&quot; MyTool.apln 
       - name: Draft release
         uses: &quot;marvinpinto/action-automatic-releases@latest&quot;        
         with:
@@ -654,7 +642,7 @@ jobs:
 <p>In this system, supported Dyalog versions are manually input in release notes upon publication of releases. In the real system, this part may be automated.</p>
 <h2 id="initial-commits-v00">Initial commits (v0.0)</h2>
 <p>Compatible with Dyalog v17.0 to latest<br />
-Dyalog v17.0 was released including this (patch) version of the tool.<br />
+Dyalog v17.0 is released including this (patch) version of the tool.<br />
 From this point onwards Dyalog v17.1 is the actively developed version.</p>
 <ol>
 <li>Create <code>README.md</code></li>
@@ -743,7 +731,7 @@ In a real tool, possibly <code>VERSION_STRING ← '0.0.0'</code> </p>
 </li>
 </ol>
 <h2 id="fix-a-bug">Fix a bug</h2>
-<p>Dyalog v17.1 was released including this (patch) version of the tool.<br />
+<p>Dyalog v17.1 is released including this (patch) version of the tool.<br />
 From this point onwards Dyalog v18.0 is the actively developed version.</p>
 <ol>
 <li>Add comment ("bug fix") to <code>MyTool.apln</code></li>
@@ -751,7 +739,7 @@ From this point onwards Dyalog v18.0 is the actively developed version.</p>
 <li>
 <p>Publish release</p>
 <p>First line of notes:<br />
-<code>Works with Dyalog versions: 17.1,</code></p>
+<code>Works with Dyalog versions: 17.0-</code></p>
 </li>
 </ol>
 <h2 id="period-of-special-bug-fixes">Period of special bug fixes</h2>
@@ -775,7 +763,7 @@ From this point onwards Dyalog v18.0 is the actively developed version.</p>
 </ol>
 <h2 id="add-a-feature-v03">Add a feature (v0.3)</h2>
 <p>Compatible with Dyalog v18.0 to latest<br />
-Dyalog v18.0 was released with this (patch) version of the tool, including the new feature <code>F3</code>.<br />
+Dyalog v18.0 is released with this (patch) version of the tool, including the new feature <code>F3</code>.<br />
 From this point onwards Dyalog v18.1 is the actively developed version.</p>
 <ol>
 <li>Add <code>F3</code> to <code>MyTool.apln</code></li>
@@ -792,8 +780,13 @@ From this point onwards Dyalog v18.1 is the actively developed version.</p>
 <li>Copy docs folder somewhere on your file system</li>
 <li>Checkout head</li>
 <li>Copy locally stored, modified old docs folder to <code>docs/0.1</code></li>
-<li>Modify mkdocs.yml to exclude <code>docs/0.1</code></li>
-<li>Commit to trunk and push</li>
+<li>
+<p>Modify mkdocs.yml to exclude <code>docs/0.1</code></p>
+<p>https://pypi.org/project/mkdocs-exclude/</p>
+</li>
+<li>
+<p>Commit to trunk and push</p>
+</li>
 </ol>
 <h2 id="backport-a-critical-bug-fix">Backport a critical bug fix</h2>
 <p>This bug has been deemed severe enough to warrant cherry-picked backporting to old versions of the tool which are compatible with supported versions of Dyalog</p>
@@ -841,13 +834,13 @@ From this point onwards Dyalog v18.1 is the actively developed version.</p>
           </a>
         
         
-          <a href="../OldExample/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ToolVersions/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Old Example
+                The Tool Versions Tool
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -331,18 +331,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../OldExample/" class="md-nav__link">
-        Old Example
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../ToolVersions/" class="md-nav__link">
         The Tool Versions Tool
       </a>
@@ -627,9 +615,9 @@
 <td><code>Works with Dyalog versions: 17.0</code></td>
 </tr>
 <tr>
-<td>A single Dyalog version number followed by a comma</td>
+<td>A single Dyalog version number followed by a dash <code>⎕UCS 45</code></td>
 <td>This tool version is compatible with that Dyalog version or higher</td>
-<td><code>Works with Dyalog versions: 17.1,</code></td>
+<td><code>Works with Dyalog versions: 17.1-</code></td>
 </tr>
 <tr>
 <td>Two Dyalog version numbers separated by a dash <code>⎕UCS 45</code></td>
@@ -639,13 +627,13 @@
 <tr>
 <td>Two or more Dyalog version numbers separated by commas <code>⎕UCS 44</code></td>
 <td>This tool version is compatible with the specified Dyalog versions only</td>
-<td><code>Works with Dyalog versions: 17.1-19.0</code></td>
+<td><code>Works with Dyalog versions: 17.1,19.0</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="examples">Examples:</h3>
 <pre><code class="language-text">Works with Dyalog versions: 17.0         ⍝ v17.0 only
-Works with Dyalog versions: 17.1,        ⍝ v17.1 or higher
+Works with Dyalog versions: 17.1-        ⍝ v17.1 or higher
 Works with Dyalog versions: 17.0-18.1    ⍝ v17.0,v17.1,v18.0,v18.1
 Works with Dyalog versions: 16.0,17.1    ⍝ v16.0 and v17.1 only
 </code></pre>

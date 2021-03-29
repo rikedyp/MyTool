@@ -350,6 +350,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#publishing-docs" class="md-nav__link">
+    Publishing docs
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latest" class="md-nav__link">
+    Latest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#any-version" class="md-nav__link">
+    Any version
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#viewing-rendered-docs" class="md-nav__link">
     Viewing rendered docs
   </a>
@@ -359,13 +386,6 @@
         <li class="md-nav__item">
   <a href="#maintaining-latest-docs" class="md-nav__link">
     Maintaining latest docs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publishing" class="md-nav__link">
-    Publishing
   </a>
   
 </li>
@@ -385,18 +405,6 @@
     <li class="md-nav__item">
       <a href="../Example/" class="md-nav__link">
         Example
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../OldExample/" class="md-nav__link">
-        Old Example
       </a>
     </li>
   
@@ -464,6 +472,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#publishing-docs" class="md-nav__link">
+    Publishing docs
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latest" class="md-nav__link">
+    Latest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#any-version" class="md-nav__link">
+    Any version
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#viewing-rendered-docs" class="md-nav__link">
     Viewing rendered docs
   </a>
@@ -473,13 +508,6 @@
         <li class="md-nav__item">
   <a href="#maintaining-latest-docs" class="md-nav__link">
     Maintaining latest docs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publishing" class="md-nav__link">
-    Publishing
   </a>
   
 </li>
@@ -505,6 +533,8 @@
 <p>Documentation is written as markdown files and rendered using <a href="https://squidfunk.github.io/mkdocs-material/getting-started/">Material for MkDocs</a>.<br />
 To create versioned documentation, use <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/">Mike</a>.<br />
 Documentation lives in the <code>docs/</code> folder in the root of the repository.</p>
+<p>!!! Note
+    All commands are from the source root, one level above the <code>docs/</code> folder.</p>
 <h2 id="setting-up-mkdocs">Setting up MkDocs</h2>
 <ol>
 <li>
@@ -513,27 +543,46 @@ Documentation lives in the <code>docs/</code> folder in the root of the reposito
 </code></pre>
 </li>
 <li>
-<p>Then, set the default docs to latest (enables redirect from root)</p>
-<pre><code>mike set-default --push latest
+<p>Optionally, copy the configuration file, styles and images from this repository (details of differences to come).</p>
+</li>
+<li>
+<p>You can now start writing documentation, and <a href="#viewing-rendered-docs">see how it looks in rendered form</a>.</p>
+</li>
+</ol>
+<h2 id="publishing-docs">Publishing docs</h2>
+<p>MkDocs generates static websites so the documentation can be made available for public consumption using any web server. For convenience, MkDocs and Mike come with commands which integrate with GitHub.</p>
+<p>!!! Warning
+    - Using <code>mike deploy VersionName</code> will overwrite the existing documentation in the <code>VersionName</code> folder.
+    - Using <code>--push</code> will attempt to push changes to the <code>gh-pages</code> branch of your repository.</p>
+<h3 id="latest">Latest</h3>
+<ol>
+<li>
+<p>Set the default docs to latest (enables redirect from root)</p>
+<pre><code>mike set-default latest
 </code></pre>
 </li>
 <li>
-<p>Lastly, deploy the current docs to GitHub with the correct version and alias <code>latest</code></p>
+<p>Then, deploy the current docs to GitHub with the correct version and alias <code>latest</code></p>
 <pre><code>mike deploy --push --update-alises 0.0 latest
 </code></pre>
 </li>
-<li>
-<p>Optionally, copy the configuration file, styles and images from this repository (details of differences to come).</p>
-</li>
 </ol>
+<h3 id="any-version">Any version</h3>
+<p>Mike simply builds your documentation from the current doc source and commits it to the gh-pages branch in a folder with the same name as the version you give Mike. </p>
+<p>For example,</p>
+<pre><code>mike deploy 0.3
+</code></pre>
+<p>will put the current source in <code>gh-pages/0.3</code>. </p>
+<pre><code>mike deploy foo
+</code></pre>
+<p>will put the current source in <code>gh-pages/foo</code>. </p>
+<p>When pushed to GitHub with GitHub Pages enabled for the gh-pages branch, this built version becomes available at the url <code>https://user.github.io/repo/foo</code>.</p>
 <h2 id="viewing-rendered-docs">Viewing rendered docs</h2>
 <p>Hot reloading means that changes to markdown files are quickly rendered on a locally served web page.</p>
 <pre><code class="language-bash">mkdocs serve
 </code></pre>
 <h2 id="maintaining-latest-docs">Maintaining latest docs</h2>
 <p>The markdown files in the <code>docs</code> folder at a given commit should reflect the behaviour of the tool at that commit.</p>
-<h2 id="publishing">Publishing</h2>
-<p>MkDocs generates static websites so the documentation can be made available for public consumption using any web server. For convenience, MkDocs and Mike come with commands which integrate with GitHub.</p>
                 
               
               
