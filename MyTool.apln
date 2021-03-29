@@ -9,10 +9,11 @@
       VERSION_STRING←'0.2.0'
     ∇
 
-    github←'https://github.com/rikedyp/'
+    github←'https://github.com/'
     dyalog_versions ← ↑(16 17 17.1 18 18.1 19)('160' '170' '171' '180' '181' '190')
 
     ∇ Run args;jarvis_dir;s
+      jarvis_dir←2⎕NQ'.' 'GetEnvironment' 'JARVISDIR'
       :If 0=⎕NC'Jarvis'   ⍝ Load Jarvis
           2 ⎕FIX'file://',jarvis_dir
       :EndIf
